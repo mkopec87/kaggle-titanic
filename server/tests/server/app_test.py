@@ -5,7 +5,7 @@ import server
 
 @pytest.fixture()
 def client():
-    app = server.app.create_app()
+    app = server.app
     app.config["TESTING"] = True
     with app.test_client() as client:
         yield client

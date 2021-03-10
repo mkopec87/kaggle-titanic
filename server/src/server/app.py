@@ -2,28 +2,19 @@ from flask import Flask, jsonify
 
 import server
 
-
-def main():
-    create_app().run()
+app = Flask(__name__)
 
 
-def create_app():
-    app = Flask(__name__)
-
-    @app.route("/version")
-    def version():
-        return jsonify(Version=server.__version__)
-
-    @app.route("/classify")
-    def hello_world():
-        return jsonify(Survived=0)
-
-    @app.route("/")
-    def hello():
-        return "Hi!"
-
-    return app
+@app.route("/version")
+def version():
+    return jsonify(Version=server.__version__)
 
 
-if __name__ == "__main__":
-    main()
+@app.route("/classify")
+def classify():
+    return jsonify(Survived=0)
+
+
+@app.route("/")
+def hello():
+    return "Hi!"
